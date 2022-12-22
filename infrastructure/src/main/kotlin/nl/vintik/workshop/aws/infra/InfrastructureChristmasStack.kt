@@ -3,6 +3,7 @@ package nl.vintik.workshop.aws.infra
 import software.amazon.awscdk.Duration
 import software.amazon.awscdk.Stack
 import software.amazon.awscdk.StackProps
+import software.amazon.awscdk.services.events.EventBus
 import software.amazon.awscdk.services.lambda.Architecture
 import software.amazon.awscdk.services.lambda.Code
 import software.amazon.awscdk.services.lambda.Function
@@ -23,5 +24,12 @@ class InfrastructureChristmasStack(scope: Construct, id: String, props: StackPro
             .memorySize(512)
             .timeout(Duration.seconds(120))
             .build()
+
+        val eventBus =
+                EventBus.Builder.create(this, "eventBus")
+                        .eventBusName("ChristmasEventBus")
+                        .build()
+
+
     }
 }
